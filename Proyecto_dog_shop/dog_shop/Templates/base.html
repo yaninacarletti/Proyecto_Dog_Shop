@@ -91,7 +91,7 @@
                     </div> {% endcomment %}
                 </div>
                 {% comment %} <a href="{% url 'Contacto' %}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contacto <i class="bi bi-arrow-right"></i></a> {% endcomment %}
-                <div class="nav-item dropdown" style="display: flex;column-gap: 10px">
+                {% comment %} <div class="nav-item dropdown" style="display: flex;column-gap: 10px">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                 <div class="dropdown-menu m-0">
                     <a href="{% url 'MostrarPerfil' %}" class="dropdown-item">Ver</a>
@@ -108,7 +108,7 @@
                 </div>
                 <div style="margin-right: 20px;">
                     <a class= "btn btn-primary" href="{% url 'Register' %}">Sign up</a>
-                </div>    
+                </div> {% endcomment %}
             </div>
         </div>
     </nav>

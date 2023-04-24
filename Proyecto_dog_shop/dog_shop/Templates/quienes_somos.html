@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="{% static 'img/about.jpg' %}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="border-start border-5 border-primary ps-5 mb-5">
+                        <h6 class="text-primary text-uppercase">SOBRE NOSOTROS</h6>
+                        <h1 class="display-5 text-uppercase mb-0">MANTENEMOS FELICES A TU PERRO TODO EL TIEMPO</h1>
+                    </div>
+                    <h4 class="text-body mb-4">Dog Shop es un proyecto en el que estamos comprometidos y disfrutamos hacer cada día. Seguimos aceptando desafíos y buscando aportar bienestar a las personas y a los perritos que forman parte de sus vidas.</h4>
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Misión</button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">Visión</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                <p class="mb-0">Dog Shop es una empresa dedicada al rubro de animales de compañia. Brindamos a nuestros clientes asesoramiento basado en nuestra experiencia y conocimientos haciendolo con compromiso y empatía. Entendemos que trabajamos con seres vivos y para ello, basados en el respeto que les tenemos, tomamos todos los recaudos para su bienestar. Nos capacitamos para dar un servicio de calidad y ofrecer los mejores productos que se puedan encontrar en el mercado para nuestros clientes y sus mascotas. ¡Nuestra misión nos inspira!</p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                <p class="mb-0">Ser una empresa enfocada en lo prioritario, lo cual es el bienestar del animal. Liderada por un equipo con acceso a la más alta calidad de capacitación y con una mirada colaborativa e inclusiva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock contenido_que_cambia %}
+

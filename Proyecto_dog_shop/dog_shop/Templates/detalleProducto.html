@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+    <h1>Vista en detalle del producto</h1>
+    <p> 
+        <strong>Producto:</strong> {{producto.nombre}}
+    </p>
+    <p>
+        <strong>Precio:</strong> {{producto.precio}}
+    </p>
+    <p>
+        <strong>Stock:</strong> {{producto.stock}}
+    </p>
+    
+{% endblock contenido_que_cambia %}

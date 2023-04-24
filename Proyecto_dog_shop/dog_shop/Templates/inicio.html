@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+    <h4>{{mensaje}}</h4>  
+    
+    {% for fields_error in miFormulario.errors.values %}
+        {% for error in fields_error  %}
+            <li><strong>{{error}}</strong></li>
+        {% endfor %}
+    {% endfor %}
+
+{% endblock contenido_que_cambia %}

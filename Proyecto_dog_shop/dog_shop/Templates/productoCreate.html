@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<h1>Agregar Servicio</h1>
+
+{% if miFormulario.errors %}
+<p style="color: red">Los datos ingresados son incorrectos</p>   
+{% endif %}
+
+<form action="CrearProducto" method = "POST">{% csrf_token %}
+    <table> 
+        {{form.as_table}}
+    </table>
+    <input type="submit", value="Enviar">
+</form>
+{% endblock contenido_que_cambia %}

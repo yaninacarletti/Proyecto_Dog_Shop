@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<h1>Perfil de {{user.username.capitalize}}</h1>
+
+{% if miFormulario.errors %}
+<p style="color: red">Los datos ingresados son incorrectos</p>   
+{% endif %}
+
+<form >
+    <table> 
+        {{miFormulario.as_table}}
+    </table>
+    <button>
+        <a href="{% url 'EditarPerfil' %}">Editar</a>
+    </button>
+    <button>
+        <a href="{% url 'EliminarPerfil' %}">Eliminar</a>
+    </button>
+</form>
+{% endblock contenido_que_cambia %}

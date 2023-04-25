@@ -13,14 +13,19 @@
                 <button>
                     <a href="{% url 'DetalleProductos' producto.id %}">Ver</a>
                 </button>
-                <button>
-                    <a href="{% url 'EditarProducto' producto.id %}">Editar</a>
-                </button>
-                <button>
-                    <a href="{% url 'EliminarProducto' producto.id %}">Eliminar</a>
-                </button>
+                
+                {% if user.is_staff %}
+                    <button>
+                        <a href="{% url 'EditarProducto' producto.id %}">Editar</a>
+                    </button>
+                    <button>
+                        <a href="{% url 'EliminarProducto' producto.id %}">Eliminar</a>
+                    </button>
+                {% endif %}
             </div>
         {% endfor %} 
-    <a href="{% url 'CrearProducto' %}">Agrega un producto</a>
+        {% if user.is_staff %}
+            <a href="{% url 'CrearProducto' %}">Agrega un producto</a>
+        {% endif %}
     </ul>
 {% endblock contenido_que_cambia %}

@@ -6,6 +6,7 @@ from .forms import ProductoFormulario, ServicioFormulario
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, UpdateView, CreateView
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
@@ -91,13 +92,17 @@ def buscar(request):
 #     success_url = "{% url 'Inicio'%}"      
 
 def listaProductos(request):
-    productos = Producto.objects.all()
-    return render(request, 'productoList.html', {'productos':productos})
+    try:
+        productos = Producto.objects.all()
+        return render(request, 'productos.html', {'productos':productos, 'url':productos.imagen.url})
+    except:
+        return render(request, 'productos.html', {'productos':productos})
 
 def detalleProductos(request, id):
     producto = Producto.objects.get(id = id)
     return render(request, 'detalleProducto.html', {'producto':producto})
 
+@staff_member_required
 def crearProducto(request):
     if request.method == "POST":
             miFormulario = ProductoFormulario(request.POST)
@@ -112,6 +117,7 @@ def crearProducto(request):
         miFormulario = ProductoFormulario()
         return render(request, "productoFormulario.html", {"miFormulario": miFormulario})
 
+@staff_member_required
 def eliminarProducto(request, id):
     if request.method == "POST":
         producto = Producto.objects.get(id=id)
@@ -120,7 +126,7 @@ def eliminarProducto(request, id):
         return render(request, 'productoList.html', {'productos':productos})
     return render(request, 'productoDelete.html')
     
-
+@staff_member_required
 def editarProducto(request, id):
     producto = Producto.objects.get(id=id)
     if request.method == "POST":
@@ -130,6 +136,7 @@ def editarProducto(request, id):
                 producto.nombre = data["nombre"]
                 producto.precio = data["precio"]
                 producto.stock = data["stock"]
+                producto.imagen = data["imagen"]
                 producto.save()
                 return HttpResponseRedirect('/dog_shop/')
             else:
@@ -138,7 +145,8 @@ def editarProducto(request, id):
         miFormulario = ProductoFormulario(initial ={
             'nombre': producto.nombre,
             'precio': producto.precio,
-            'stock': producto.stock 
+            'stock': producto.stock,
+            'imagen': producto.imagen
         })
         return render(request, "editarFormulario.html", {"miFormulario": miFormulario, "id": producto.id})
 

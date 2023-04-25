@@ -26,7 +26,7 @@ def logueo(request):
                         avatar = Avatar.objects.get(user = request.user.id)
                         return render(request, 'inicio.html',{'mensaje': f'Bienvenido {usuario.capitalize()}', 'url': avatar.imagen.url})
                     except:
-                        render(request, 'inicio.html',{'mensaje': f'Bienvenido {usuario.capitalize()}'})
+                        return render(request, 'inicio.html',{'mensaje': f'Bienvenido {usuario.capitalize()}'})
                 else:
                     return render(request, 'inicio.html',{'mensaje':'Error: datos incorrectos'})
                 
@@ -50,7 +50,7 @@ def register(request):
         miFormulario = UserCreationForm()
         return render(request, "registro.html", {"miFormulario": miFormulario})
 
-@login_required    
+@login_required  
 def editarPerfil(request):
     usuario = request.user
     if request.method == "POST":

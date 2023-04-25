@@ -3,15 +3,18 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
+<div style="margin-left: 200px;">
     <h1>Vista en detalle del producto</h1>
+    <img src="{{url}}" alt="producto">
     <p> 
         <strong>Producto:</strong> {{producto.nombre}}
-    </p>
+    </p> 
     <p>
         <strong>Precio:</strong> {{producto.precio}}
     </p>
     <p>
         <strong>Stock:</strong> {{producto.stock}}
     </p>
+</div>
     
 {% endblock contenido_que_cambia %}

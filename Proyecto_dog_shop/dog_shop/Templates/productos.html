@@ -9,63 +9,70 @@
                 <h6 class="text-primary text-uppercase">Productos</h6>
                 <h1 class="display-5 text-uppercase mb-0">Productos para tus mejores amigos</h1>
             </div>
-            <div class="owl-carousel product-carousel">
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="{% static 'img/My_imgs/producto_1_collar_gps.JPG' %}" alt="">
-                        <h6 class="text-uppercase">Quality Pet Foods</h6>
-                        <h5 class="text-primary mb-0">$199.00</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                <div class="owl-carousel product-carousel">
+                    {% for producto in productos  %}
+                        <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    {% if user.is_staff %}
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EditarProducto' producto.id %}">Editar</a>
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarProducto' producto.id %}">Eliminar</a>
+                                    {% else %}
+                                        <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="{% static 'img/My_imgs/producto_2_ducha_masajeador.JPG' %}" alt="">
-                        <h6 class="text-uppercase">Quality Pet Foods</h6>
-                        <h5 class="text-primary mb-0">$199.00</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        <!-- <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                    <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="{% static 'img/My_imgs/producto_3_alimento_en_lata.JPG' %}" alt="">
-                        <h6 class="text-uppercase">Quality Pet Foods</h6>
-                        <h5 class="text-primary mb-0">$199.00</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                    <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="{% static 'img/My_imgs/producto_4_anillo_dispensador_de_snacks.JPG' %}" alt="">
-                        <h6 class="text-uppercase">Quality Pet Foods</h6>
-                        <h5 class="text-primary mb-0">$199.00</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
+                        <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                    <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                    <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                </div>
+                            </div>
+                        </div> -->
+                    {% endfor %} 
                 </div>
-                <div class="pb-5">
-                    <div class="product-item position-relative bg-light d-flex flex-column text-center">
-                        <img class="img-fluid mb-4" src="{% static 'img/My_imgs/producto_5_pelota_smart.JPG' %}" alt="">
-                        <h6 class="text-uppercase">Quality Pet Foods</h6>
-                        <h5 class="text-primary mb-0">$199.00</h5>
-                        <div class="btn-action d-flex justify-content-center">
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
-                            <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-eye"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 {% endblock contenido_que_cambia %}

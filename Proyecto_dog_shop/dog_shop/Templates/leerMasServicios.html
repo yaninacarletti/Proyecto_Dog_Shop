@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+            <h6 class="text-primary text-uppercase">{{lms.titulo}}</h6>
+            <h1 class="display-5 text-uppercase mb-0">{{lms.subtitulo}}</h1>
+        </div>
+
+        <div style="margin-left: 200px; margin-right: 200px;">
+            <!-- <h1><strong>{{lms.titulo}}</strong></h1>
+            <h4>{{lms.subtitulo}}</h4> -->
+            <img src="{{lms.imagen.url}}" alt="Imagen_Servicio">
+            <div style="padding-top: 50px;">
+                <p>
+                    {{lms.descripcion}}
+                </p>
+            </div>
+            {% if user.is_staff %}
+                <a class="btn btn-primary py-2 px-3" href="{% url 'EditarLeerMasServicios' lms.id %}">Editar</a>
+                <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarLeerMasServicios' lms.id %}">Eliminar</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock contenido_que_cambia %}

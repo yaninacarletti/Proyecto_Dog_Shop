@@ -7,3 +7,7 @@ admin.site.register(Producto)
 
 admin.site.register(Servicio)
 
+admin.site.register(Marca)
+
+admin.site.register(LeerMasServicios)
+

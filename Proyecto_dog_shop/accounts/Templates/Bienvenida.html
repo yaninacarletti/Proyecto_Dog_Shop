@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div style="margin-left: 200px;">
+    <h1><strong>Bienvenid@ {{user.username.capitalize}}</strong></h1> 
+    <h2>Que bueno es verte</h2>
+    <a href="{% url 'Inicio' %}">Inicio</a>
+</div>
+
+{% endblock contenido_que_cambia %}

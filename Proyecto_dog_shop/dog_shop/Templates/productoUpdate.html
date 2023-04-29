@@ -3,17 +3,22 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
-<h1>Agregar Servicio</h1>
+<div style="margin-left: 200px;">
+    <h1>Editar Producto</h1>
+</div>
 
 {% if miFormulario.errors %}
 <p style="color: red">Los datos ingresados son incorrectos</p>   
 {% endif %}
 
-<form action="{% url 'ActualizarProducto' producto.id %}" method = "POST">{% csrf_token %}
-    <table> 
-        {{form.as_table}}
-    </table>
-    <input type="submit", value="Enviar">
-</form>
+<div style="margin-left: 200px;">
+    <form action="{% url 'ActualizarProducto' producto.id %}" method = "POST">{% csrf_token %}
+        <table> 
+            {{form.as_table}}
+        </table>
+        <input type="submit", value="Editar">
+    </form>
+</div>
+
 {% endblock contenido_que_cambia %}
 

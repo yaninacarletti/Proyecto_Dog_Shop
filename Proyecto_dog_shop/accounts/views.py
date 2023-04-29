@@ -4,9 +4,9 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import UserEditForm
+from .forms import UserEditForm, ContactoFormulario
 from django.contrib.auth.models import User
-from .models import Avatar
+from .models import Avatar, Contacto
 
 # Create your views here.
 
@@ -24,9 +24,9 @@ def logueo(request):
                     login(request, user)
                     try:
                         avatar = Avatar.objects.get(user = request.user.id)
-                        return render(request, 'inicio.html',{'mensaje': f'Bienvenido {usuario.capitalize()}', 'url': avatar.imagen.url})
+                        return render(request, 'Bienvenida.html', {'url': avatar.imagen.url})
                     except:
-                        return render(request, 'inicio.html',{'mensaje': f'Bienvenido {usuario.capitalize()}'})
+                        return render(request, 'Bienvenida.html')
                 else:
                     return render(request, 'inicio.html',{'mensaje':'Error: datos incorrectos'})
                 
@@ -43,7 +43,7 @@ def register(request):
                 data = miFormulario.cleaned_data
                 username = data['username']
                 miFormulario.save()
-                return render(request, 'inicio.html',{'mensaje': f'Usuario {username} creado exitósamente'})
+                return render(request, 'creacionUsuario.html')
             else:
                 return render(request, "inicio.html", {'mensaje': 'Formulario invalido'})
     else:
@@ -83,4 +83,16 @@ def eliminarPerfil(request):
         return render(request, "inicio.html", {'mensaje': 'Perfil eliminado correctamente'})
     return render(request, 'eliminarPerfil.html')
 
-
+def crearContacto(request):
+    if request.method == "POST":
+            miFormulario = ContactoFormulario(request.POST)
+            if miFormulario.is_valid():
+                data = miFormulario.cleaned_data
+                contacto = Contacto(nombre=data["nombre"], correo=data["correo"], asunto=data["asunto"], mensaje=data["mensaje"])
+                contacto.save()
+                return render(request, "contacto_devolucion.html")
+            else:
+                return render(request, "inicio.html", {'mensaje': 'Formulario invalido'})
+    else:
+        miFormulario = ContactoFormulario()
+        return render(request, "contacto.html", {"miFormulario": miFormulario})

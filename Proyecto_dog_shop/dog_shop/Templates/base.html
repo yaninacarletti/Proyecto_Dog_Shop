@@ -77,9 +77,10 @@
             <div class="navbar-nav ms-auto py-0">
                 <a href="{% url 'Inicio' %}" class="nav-item nav-link active">Home</a>
                 <a href="{% url 'Quienes_somos' %}" class="nav-item nav-link">Quienes somos</a>
-                <a href="{% url 'Servicios' %}" class="nav-item nav-link">Servicios</a>
-                <a href="{% url 'ListaProducto' %}" class="nav-item nav-link">Productos</a>
-                <a href="{% url 'Contacto' %}" class="nav-item nav-link" style="padding-right: 40px;">Contacto</a>
+                <a href="{% url 'ListaServicio' %}" class="nav-item nav-link">Servicios</a>
+                <a href="{% url 'ListaProducto' %}" class="nav-item nav-link">Productos</a> 
+                <a href="{% url 'ListaMarcas' %}" class="nav-item nav-link">Marcas</a>
+                <a href="{% url 'CrearContacto' %}" class="nav-item nav-link" style="padding-right: 40px;">Contacto</a>
                 {% comment %} <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
@@ -90,26 +91,31 @@
                         <a href="detail.html" class="dropdown-item">Blog Detail</a>
                     </div> {% endcomment %}
                 </div>
-                {% comment %} <a href="{% url 'Contacto' %}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contacto <i class="bi bi-arrow-right"></i></a> {% endcomment %}
-                <div class="nav-item dropdown" style="display: flex;column-gap: 10px">
+                
+                <div class="nav-item dropdown" style="display: flex;column-gap: 10px;" >
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                <div class="dropdown-menu m-0">
+                <div class="dropdown-menu m-0" >
                     <a href="{% url 'MostrarPerfil' %}" class="dropdown-item">Ver</a>
                     <a href="{% url 'EditarPerfil' %}" class="dropdown-item">Editar</a>
                     <a href="{% url 'EliminarPerfil' %}" class="dropdown-item">Eliminar</a>
                 </div>
-                <div style="display: flex;column-gap: 10px; padding-right: 10px;">
+                {% comment %} <a href="{% url 'CrearContacto' %}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contacto <i class="bi bi-arrow-right"></i></a>  {% endcomment %}
+                <div style="display: flex; column-gap: 10px; padding-right: 10px; padding-left: 10px;" >
                 {% if user.is_authenticated %}
+                    <div style = "margin-left: 200px;">
+                        <p >Bienvenido {{user.username}}</p>
+                    </div>
                     {% if url %}
-                        <img height="40px" src="{{url}}" alt="avatar">
+                        <div>
+                            <img height="60px" src="{{url}}" alt="avatar">
+                        </div>
                     {% endif %}
-                    <p>Bienvenido {{user.username}}</p>
                     <a class= "btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
                 {% else %}
                     <a class= "btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
                 {% endif %}
                 </div>
-                <div style="margin-right: 20px;">
+                <div style="margin-right: 30px;">
                     <a class= "btn btn-primary" href="{% url 'Register' %}">Sign up</a>
                 </div>
             </div>
@@ -179,20 +185,21 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
-                    <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Newsletter</h5>
+                    <!-- <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Newsletter</h5>
                     <form action="">
                         <div class="input-group">
                             <input type="text" class="form-control p-3" placeholder="Correo Electrónico">
                             <button class="btn btn-primary">Sign Up</button>
                         </div>
-                    </form>
-                    <h6 class="text-uppercase mt-4 mb-3">Siguenos</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
-                        <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
-                        <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
-                    </div>
+                    </form> -->
+
+                <h6 class="text-uppercase mt-4 mb-3">Siguenos</h6>
+                <div class="d-flex">
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-twitter"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-facebook"></i></a>
+                    <a class="btn btn-outline-primary btn-square me-2" href="#"><i class="bi bi-linkedin"></i></a>
+                    <a class="btn btn-outline-primary btn-square" href="#"><i class="bi bi-instagram"></i></a>
+                </div>
                 </div>
                 <div class="col-12 text-center text-body">
                     <a class="text-body" href="">Terms & Conditions</a>

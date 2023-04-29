@@ -3,16 +3,21 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
-<h1>Inicia Sesión</h1>
+<div style="margin-left: 200px;">
+    <h1>Inicia Sesión</h1>
+</div>
 
 {% if miFormulario.errors %}
 <p style="color: red">Los datos ingresados son incorrectos</p>   
 {% endif %}
 
-<form action="{% url 'Login' %}" method = "POST">{% csrf_token %}
-    <table> 
-        {{miFormulario.as_table}}
-    </table>
-    <input type="submit", value="Inicia Sesión">
-</form>
+<div style="margin-left: 200px;">
+    <form action="{% url 'Login' %}" method = "POST">{% csrf_token %}
+        <table> 
+            {{miFormulario.as_table}}
+        </table>
+        <input type="submit", value="Inicia Sesión">
+    </form>
+</div>
+
 {% endblock contenido_que_cambia %}

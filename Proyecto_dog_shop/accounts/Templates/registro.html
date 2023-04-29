@@ -3,16 +3,20 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
-<h1>Complete el formulario para registrarse </h1>
+<div style="margin-left: 200px;">
+    <h1>Complete el formulario para registrarse</h1>
+</div>
 
 {% if miFormulario.errors %}
 <p style="color: red">Los datos ingresados son incorrectos</p>   
 {% endif %}
 
-<form action="{% url 'Register' %}" method = "POST">{% csrf_token %}
-    <table> 
-        {{miFormulario.as_table}}
-    </table>
-    <input type="submit", value="Registrarse">
-</form>
+<div style="margin-left: 200px;">
+    <form action="{% url 'Register' %}" method = "POST">{% csrf_token %}
+        <table> 
+            {{miFormulario.as_table}}
+        </table>
+        <input type="submit", value="Registrarse">
+    </form>
+</div>
 {% endblock contenido_que_cambia %}

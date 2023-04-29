@@ -10,65 +10,32 @@
                 <h1 class="display-5 text-uppercase mb-0">NUESTROS EXCELENTES SERVICIOS DE CUIDADO PARA TU PERRO</h1>
             </div>
             <div class="row g-5">
+            {% for servicio in servicios  %}
                 <div class="col-md-6">
                     <div class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-house display-1 text-primary me-4"></i>
+                        <img class="img-fluid mb-4" src="{{servicio.imagen.url}}" alt="servicio">
                         <div> 
-                            <h5 class="text-uppercase mb-3">ALOJAMIENTO DE PERROS</h5>
-                            <p>Cuando necesites salir por un tiempo de casa y no sabes donde dejar a tu perro en DOG SHOP contamos con alojamiento para ellos como si estuviesen en su hogar.</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
+                            <h5 class="text-uppercase mb-3">{{servicio}}</h5>
+                            <p>{{servicio.descripcion}}</p>
+                            <!-- <p>Cuando necesites salir por un tiempo de casa y no sabes donde dejar a tu perro en DOG SHOP contamos con alojamiento para ellos como si estuviesen en su hogar.</p> -->
+                            {% if user.is_staff %}
+                                <a class="btn btn-primary py-2 px-3" href="{% url 'EditarServicio' servicio.id %}">Editar</a>
+                                <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarServicio' servicio.id %}">Eliminar</a>
+                                <a style= "padding-left: 120px" class="text-primary text-uppercase" href="{% url 'LeerMasServicios' servicio.id %}">Leer más<i class="bi bi-chevron-right"></i></a>
+                            {% else %}
+                                <a class="btn btn-primary py-2 px-3" href="">Solicitar Turno</a>
+                                <a style= "padding-left: 120px" class="text-primary text-uppercase" href="{% url 'LeerMasServicios' servicio.id %}">Leer más<i class="bi bi-chevron-right"></i></a>
+                            {% endif %}
+                            
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-vaccine display-1 text-primary me-4"></i>
-                        <div>
-                            <h5 class="text-uppercase mb-3">CONSULTORIO VETERINARIO</h5>
-                            <p>En DOG SHOP creemos que la salud de los animales es un aspecto de suma  importancia tanto para bienestar de ellos como en el de toda la familia.</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div>
+            {% endfor %}
+            {% if user.is_staff %}
+                <div>
+                    <a class="btn btn-primary py-2 px-3" href="{% url 'CrearServicio' %}">Agregar Servicio</a>
                 </div>
-                <div class="col-md-6">
-                    <div class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-grooming display-1 text-primary me-4"></i>
-                        <div>
-                            <h5 class="text-uppercase mb-3">BAÑO Y PELUQUERIA</h5>
-                            <p>En nuestras sucursales contamos con servicio profesional de peluquería canina y felina. Se realizan cortes de raza, higiénicos y baños sanitarios. Utilizamos productos hipoalergénicos y de alta calidad acorde al pelaje y tipo de piel de cada animal.</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div  class="col-md-6">
-                    <div  class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-cat display-1 text-primary me-4"></i>
-                        <div>
-                            <h5 class="text-uppercase mb-3">ENTRENAMIENTO</h5>
-                            <p>En DOG SHOP también brindamos entrenamiento para tu perro, tanto entrenamiento doméstico como para competición.</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    {% comment %} <div class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-dog display-1 text-primary me-4"></i>
-                        <div>
-                            <h5 class="text-uppercase mb-3">Pet Exercise</h5>
-                            <p>Kasd dolor no lorem sit tempor at justo rebum rebum stet justo elitr dolor amet sit</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div> {% endcomment %}
-                </div>
-                <div class="col-md-6">
-                    {% comment %} <div class="service-item bg-light d-flex p-4">
-                        <i class="flaticon-vaccine display-1 text-primary me-4"></i>
-                        <div>
-                            <h5 class="text-uppercase mb-3">Pet Treatment</h5>
-                            <p>Kasd dolor no lorem sit tempor at justo rebum rebum stet justo elitr dolor amet sit</p>
-                            <a class="text-primary text-uppercase" href="">Read More<i class="bi bi-chevron-right"></i></a>
-                        </div>
-                    </div> {% endcomment %}
+            {% endif %}
                 </div>
             </div>
         </div>

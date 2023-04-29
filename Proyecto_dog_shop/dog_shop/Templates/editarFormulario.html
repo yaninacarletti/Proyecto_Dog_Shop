@@ -4,7 +4,7 @@
 
 {% block contenido_que_cambia %}
 <div style="margin-left: 200px;">
-    <h1>Edita Producto</h1>
+    <h1>Editar Producto</h1>
 </div>
 
 {% if miFormulario.errors %}
@@ -12,7 +12,7 @@
 {% endif %}
 
 <div style="margin-left: 200px;">
-    <form action="{% url 'EditarProducto' id %}" method = "POST">{% csrf_token %}
+    <form action="{% url 'EditarProducto' id %}" method = "POST"  enctype="multipart/form-data">{% csrf_token %}
         <table> 
             {{miFormulario.as_table}}
         </table>

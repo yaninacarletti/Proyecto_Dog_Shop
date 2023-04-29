@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+            <h6 class="text-primary text-uppercase">CONTÁCTENOS</h6>
+            <h1 class="display-5 text-uppercase mb-0">SIÉNTETE LIBRE DE CONTACTARNOS</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <div style="margin-left: 200px;">
+                    <form action="{% url 'CrearContacto' %}" method = "POST">{% csrf_token %}
+                        <table> 
+                            {{miFormulario.as_table}}
+                        </table>
+                        <div style="padding-top: 200 px;">
+                            <input type="submit", value="Enviar Mensaje">
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+                {% include 'info_contacto.html' %}
+        </div>
+    </div> 
+{% endblock contenido_que_cambia %}
+

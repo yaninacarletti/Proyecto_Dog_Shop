@@ -9,5 +9,6 @@ urlpatterns = [
     path('editarPerfil/', editarPerfil, name= 'EditarPerfil'),
     path('mostrarPerfil/', mostrarPerfil, name= 'MostrarPerfil'),
     path('eliminarPerfil/', eliminarPerfil, name= 'EliminarPerfil'),
+    path('crearContacto/', crearContacto, name= 'CrearContacto'),
     ]
 

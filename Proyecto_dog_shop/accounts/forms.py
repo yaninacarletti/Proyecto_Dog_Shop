@@ -1,7 +1,25 @@
 from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
-from .models import Contacto
+from .models import Contacto, Avatar
+
+class AvatarFormulario(forms.ModelForm):
+    
+    class Meta:
+        model = Avatar
+        fields = ("user", "imagen")
+
+# class AvatarFormulario(forms.Form):
+
+#     user = forms.CharField()   debe ser un tipo de instancia USER
+#     imagen = forms.ImageField()
+
+    def clean_user(self):
+        user = self.cleaned_data['user']
+        if user != self.user.username:
+            raise forms.ValidationError("Solo puede modificar su propio avatar")
+        return user
+        
 
 class ContactoFormulario(forms.ModelForm):
     

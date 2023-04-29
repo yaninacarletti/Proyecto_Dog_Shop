@@ -4,7 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import UserEditForm, ContactoFormulario
+from .forms import UserEditForm, ContactoFormulario, AvatarFormulario
 from django.contrib.auth.models import User
 from .models import Avatar, Contacto
 
@@ -83,6 +83,7 @@ def eliminarPerfil(request):
         return render(request, "inicio.html", {'mensaje': 'Perfil eliminado correctamente'})
     return render(request, 'eliminarPerfil.html')
 
+#CONTACTO
 def crearContacto(request):
     if request.method == "POST":
             miFormulario = ContactoFormulario(request.POST)
@@ -96,3 +97,21 @@ def crearContacto(request):
     else:
         miFormulario = ContactoFormulario()
         return render(request, "contacto.html", {"miFormulario": miFormulario})
+    
+#AVATAR
+def crearAvatar(request):
+    avatares = Avatar.objects.all()
+    if request.method == "POST":
+            miFormulario = AvatarFormulario(request.POST, request.FILES)
+            if miFormulario.is_valid():
+                data = miFormulario.cleaned_data
+                avatar = Avatar(user=data["user"], imagen=data["imagen"])
+                avatar.save()
+                return render(request, "avatares.html", {"avatar": avatar})
+            else:
+                return render(request, "inicio.html", {'mensaje': 'Formulario invalido'})
+    else:
+        miFormulario = AvatarFormulario()
+        return render(request, "avatarFormulario.html", {"miFormulario": miFormulario})
+    
+    

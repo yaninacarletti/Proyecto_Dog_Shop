@@ -8,7 +8,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name= 'logout.html'), name= 'Logout'),
     path('editarPerfil/', editarPerfil, name= 'EditarPerfil'),
     path('mostrarPerfil/', mostrarPerfil, name= 'MostrarPerfil'),
-    path('eliminarPerfil/', eliminarPerfil, name= 'EliminarPerfil'),
+    path('eliminarPerfil/', eliminarPerfil, name= 'EliminarPerfil'),   
     path('crearContacto/', crearContacto, name= 'CrearContacto'),
+    path('crearAvatar/', crearAvatar, name= 'CrearAvatar'),
     ]
 

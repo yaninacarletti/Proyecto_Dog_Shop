@@ -12,7 +12,7 @@
 {% endif %}
 
 <div style="margin-left: 200px;">
-    <form action="{% url 'EditarMarca' id %}" method = "POST">{% csrf_token %}
+    <form action="{% url 'EditarMarca' id %}" method = "POST" enctype="multipart/form-data">{% csrf_token %}
         <table> 
             {{miFormulario.as_table}}
         </table>

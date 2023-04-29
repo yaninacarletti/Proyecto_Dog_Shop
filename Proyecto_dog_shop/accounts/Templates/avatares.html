@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div style="margin-left: 200px;">
+    <p> 
+        <strong>Avatar:</strong>
+    </p> 
+    <img src="{{avatar.imagen.url}}" alt="avatar">
+</div>
+    
+{% endblock contenido_que_cambia %}
+

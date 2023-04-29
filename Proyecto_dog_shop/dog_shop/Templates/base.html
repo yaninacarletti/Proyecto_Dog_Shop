@@ -176,12 +176,13 @@
                 <div class="col-lg-3 col-md-6">
                     <h5 class="text-uppercase border-start border-5 border-primary ps-3 mb-4">Enlaces</h5>
                     <div class="d-flex flex-column justify-content-start">
-                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Inicio</a>
-                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Quienes Somos</a>
-                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Servicios</a>
-                        <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Productos</a>
+                        <a class="text-body mb-2" href="{% url 'Inicio' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Inicio</a>
+                        <a class="text-body mb-2" href="{% url 'Quienes_somos' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Quienes Somos</a>
+                        <a class="text-body mb-2" href="{% url 'ListaServicio' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Servicios</a>
+                        <a class="text-body mb-2" href="{% url 'ListaProducto' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Productos</a>
+                        <a class="text-body mb-2" href="{% url 'ListaMarcas' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Marcas</a>
                         <!-- <a class="text-body mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest Blog</a> -->
-                        <a class="text-body" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contacto</a>
+                        <a class="text-body" href="{% url 'CrearContacto' %}"><i class="bi bi-arrow-right text-primary me-2"></i>Contacto</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">

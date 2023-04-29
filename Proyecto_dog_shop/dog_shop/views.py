@@ -10,8 +10,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 
-def inicio(request):
-    return render(request, 'inicio.html')
+# def inicio(request):
+#     return render(request, 'inicio.html')
 
 def quienes_somos(request):
     return render(request, 'quienes_somos.html')
@@ -93,10 +93,10 @@ def detalleProductos(request, id):
 @staff_member_required
 def crearProducto(request):
     if request.method == "POST":
-            miFormulario = ProductoFormulario(request.POST)
+            miFormulario = ProductoFormulario(request.POST,  request.FILES)
             if miFormulario.is_valid():
                 data = miFormulario.cleaned_data
-                producto = Producto(nombre=data["nombre"], precio=data["precio"], stock=data["stock"])
+                producto = Producto(nombre=data["nombre"], precio=data["precio"], stock=data["stock"], descripcion=data["descripcion"], imagen=data["imagen"])
                 producto.save()
                 return HttpResponseRedirect('/dog_shop/')
             else:
@@ -152,7 +152,7 @@ def detalleServicios(request, id):
 @staff_member_required
 def crearServicio(request):    
     if request.method == "POST":
-            miFormulario = ServicioFormulario(request.POST)
+            miFormulario = ServicioFormulario(request.POST, request.FILES)
             if miFormulario.is_valid():
                 data = miFormulario.cleaned_data
                 servicios = Servicio(nombre=data["nombre"], precio=data["precio"], num_max_citas=data["num_max_citas"])
@@ -207,7 +207,7 @@ def listaMarcas(request):
 @staff_member_required
 def crearMarca(request):
     if request.method == "POST":
-            miFormulario = MarcaFormulario(request.POST)
+            miFormulario = MarcaFormulario(request.POST, request.FILES)
             if miFormulario.is_valid():
                 data = miFormulario.cleaned_data
                 marca = Marca(nombre=data["nombre"], imagen=data["imagen"])
@@ -231,7 +231,7 @@ def eliminarMarca(request, id):
 def editarMarca(request, id):
     marca = Marca.objects.get(id=id)
     if request.method == "POST":
-            miFormulario = MarcaFormulario(request.POST)
+            miFormulario = MarcaFormulario(request.POST, request.FILES)
             if miFormulario.is_valid():
                 data = miFormulario.cleaned_data
                 marca.nombre = data["nombre"]
@@ -299,7 +299,11 @@ def editarLeerMasServicios(request, id):
         })
         return render(request, "editarFormularioLeerMasServicios.html", {"miFormulario": miFormulario, "id": leerMasServicios.id})
         
-
+def inicio(request):
+    servicios =listaServicios(request)
+    productos =listaProductos(request)
+    marcas =listaMarcas(request)
+    return render(request, 'inicio.html', {'servicios':servicios, 'productos':productos, 'marcas':marcas})
 
 
 

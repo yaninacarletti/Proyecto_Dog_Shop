@@ -11,4 +11,155 @@
         {% endfor %}
     {% endfor %}
 
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="{% static 'img/about.jpg' %}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="border-start border-5 border-primary ps-5 mb-5">
+                        <h6 class="text-primary text-uppercase">SOBRE NOSOTROS</h6>
+                        <h1 class="display-5 text-uppercase mb-0">MANTENEMOS FELICES A TU PERRO TODO EL TIEMPO</h1>
+                    </div>
+                    <h4 class="text-body mb-4">Dog Shop es un proyecto en el que estamos comprometidos y disfrutamos hacer cada día. Seguimos aceptando desafíos y buscando aportar bienestar a las personas y a los perritos que forman parte de sus vidas.</h4>
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Misión</button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">Visión</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                <p class="mb-0">Dog Shop es una empresa dedicada al rubro de animales de compañia. Brindamos a nuestros clientes asesoramiento basado en nuestra experiencia y conocimientos haciendolo con compromiso y empatía. Entendemos que trabajamos con seres vivos y para ello, basados en el respeto que les tenemos, tomamos todos los recaudos para su bienestar. Nos capacitamos para dar un servicio de calidad y ofrecer los mejores productos que se puedan encontrar en el mercado para nuestros clientes y sus mascotas. ¡Nuestra misión nos inspira!</p>
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                                <p class="mb-0">Ser una empresa enfocada en lo prioritario, lo cual es el bienestar del animal. Liderada por un equipo con acceso a la más alta calidad de capacitación y con una mirada colaborativa e inclusiva.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h6 class="text-primary text-uppercase">Servicios</h6>
+                <h1 class="display-5 text-uppercase mb-0">NUESTROS EXCELENTES SERVICIOS DE CUIDADO PARA TU PERRO</h1>
+            </div>
+            <div class="row g-5">
+            {% for servicio in servicios  %}
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4">
+                        <img class="img-fluid mb-4" src="{{servicio.imagen.url}}" alt="servicio">
+                        <div> 
+                            <h5 class="text-uppercase mb-3">{{servicio}}</h5>
+                            <p>{{servicio.descripcion}}</p>
+                            <!-- <p>Cuando necesites salir por un tiempo de casa y no sabes donde dejar a tu perro en DOG SHOP contamos con alojamiento para ellos como si estuviesen en su hogar.</p> -->
+                            {% if user.is_staff %}
+                                <a class="btn btn-primary py-2 px-3" href="{% url 'EditarServicio' servicio.id %}">Editar</a>
+                                <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarServicio' servicio.id %}">Eliminar</a>
+                                <a style= "padding-left: 120px" class="text-primary text-uppercase" href="{% url 'LeerMasServicios' servicio.id %}">Leer más<i class="bi bi-chevron-right"></i></a>
+                            {% else %}
+                                <a class="btn btn-primary py-2 px-3" href="">Solicitar Turno</a>
+                                <a style= "padding-left: 120px" class="text-primary text-uppercase" href="{% url 'LeerMasServicios' servicio.id %}">Leer más<i class="bi bi-chevron-right"></i></a>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% if user.is_staff %}
+                <div>
+                    <a class="btn btn-primary py-2 px-3" href="{% url 'CrearServicio' %}">Agregar Servicio</a>
+                </div>
+            {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h6 class="text-primary text-uppercase">Productos</h6>
+                <h1 class="display-5 text-uppercase mb-0">Productos para tus mejores amigos</h1>
+            </div>
+                <div class="owl-carousel product-carousel">
+                    {% for producto in productos  %}
+                        <div class="pb-5">
+                            <div class="product-item position-relative bg-light d-flex flex-column text-center">
+                                <img class="img-fluid mb-4" src="{{producto.imagen.url}}" alt="producto">
+                                <h6 class="text-uppercase"><li>{{producto.nombre}}</li></h6>
+                                <h5 class="text-primary mb-0"><li>{{producto.precio}}</li></h5>
+                                <div class="btn-action d-flex justify-content-center">
+                                    {% if user.is_staff %}
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EditarProducto' producto.id %}">Editar</a>
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarProducto' producto.id %}">Eliminar</a>
+                                    {% else %}
+                                        <a class="btn btn-primary py-2 px-3" href=""><i class="bi bi-cart"></i></a>
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'DetalleProductos' producto.id %}"><i class="bi bi-eye"></i></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% if user.is_staff %}
+                        </div style= "padding-top:100px">
+                        <a class="btn btn-primary py-2 px-3" href="{% url 'CrearProducto' %}">Agregar Producto</a>
+                    {% endif %}
+        </div>
+    </div>
+    
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h6 class="text-primary text-uppercase">Nos Acompañan</h6>
+                <h1 class="display-5 text-uppercase mb-0">Marcas que confían en nosotros</h1>
+            </div>
+            <div class="owl-carousel team-carousel position-relative" style="padding-right: 25px;">
+                {% for marca in marcas  %}
+                    <div class="team-item">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid w-100" src="{{marca.imagen.url}}" alt="marca">
+                            <!-- <div class="team-overlay">
+                                <div class="d-flex align-items-center justify-content-start">
+                                    <a class="btn btn-light btn-square mx-1" href="#"><i class="bi bi-twitter"></i></a>
+                                    <a class="btn btn-light btn-square mx-1" href="#"><i class="bi bi-facebook"></i></a>
+                                    <a class="btn btn-light btn-square mx-1" href="#"><i class="bi bi-linkedin"></i></a>
+                                </div>
+                            </div> -->
+                        </div>
+                        <!-- <div class="bg-light text-center p-4">
+                            <h5 class="text-uppercase">{{marca.nombre}}</h5>
+                            <p class="m-0">Designation</p> -->
+                            <div>
+                                {% if user.is_staff %}
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EditarMarca' marca.id %}">Editar</a>
+                                        <a class="btn btn-primary py-2 px-3" href="{% url 'EliminarMarca' marca.id %}">Eliminar</a>
+                                {% endif %}
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                {% endfor %}
+                {% if user.is_staff %}
+                    </div style="padding-top: 100px">
+                        <a class="btn btn-primary py-2 px-3" href="{% url 'CrearMarca' %}">Agregar Marca</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
 {% endblock contenido_que_cambia %}

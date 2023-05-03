@@ -10,11 +10,11 @@
 {% endif %}
 
 <div style="margin-left: 200px;">
-        <form method = "POST">{% csrf_token %}
-            <p>¿Está seguro que desea eliminar la marca seleccionada?</p>
-            <button type="submit">Confirmar</button>
-            <button> <a href="{% url 'Inicio' %}">Cancelar</a></button>
-            
-        </form>
+    <form method = "POST">{% csrf_token %}
+        <p>¿Está seguro que desea eliminar la marca seleccionada?</p>
+        <button type="submit">Confirmar</button>
+        <button> <a href="{% url 'Inicio' %}">Cancelar</a></button>
+        
+    </form>
 </div>
 {% endblock contenido_que_cambia %}

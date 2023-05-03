@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
-<div style="margin-left: 200px;">
+<div style="margin-left: 200px;" >
     <h1>Vista en detalle del producto</h1>
-    <img src="{{url}}" alt="producto">
+    <img src="{{producto.imagen.url}}" alt="producto">
     <p> 
         <strong>Producto:</strong> {{producto.nombre}}
     </p> 

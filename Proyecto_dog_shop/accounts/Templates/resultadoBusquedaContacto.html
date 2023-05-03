@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}    
+<div style="margin-left: 200px;">
+    <p>Mensajes de la fecha: {{fecha}}</p>
+    
+    {% if contactos %}
+    <ul>
+        {% for contacto in contactos  %}
+            <div>
+                <li>{{contacto.correo}}</li>
+
+                    <p>Asunto: {{contacto.asunto}}</p>
+                    <p>Mensaje: {{contacto.mensaje}}</p>
+            </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock contenido_que_cambia %}

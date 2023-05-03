@@ -7,6 +7,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .forms import UserEditForm, ContactoFormulario, AvatarFormulario
 from django.contrib.auth.models import User
 from .models import Avatar, Contacto
+from datetime import datetime
+import calendar
+import time
 
 # Create your views here.
 
@@ -17,9 +20,7 @@ def logueo(request):
                 data = miFormulario.cleaned_data
                 usuario = data['username']
                 psw = data['password']
-
                 user = authenticate(username=usuario, password=psw)
-
                 if user:
                     login(request, user)
                     try:
@@ -41,9 +42,9 @@ def register(request):
             miFormulario = UserCreationForm(request.POST)
             if miFormulario.is_valid():
                 data = miFormulario.cleaned_data
-                username = data['username']
+                username = data['username'].capitalize()
                 miFormulario.save()
-                return render(request, 'creacionUsuario.html')
+                return render(request, 'creacionUsuario.html', {"username":username})
             else:
                 return render(request, "inicio.html", {'mensaje': 'Formulario invalido'})
     else:
@@ -62,7 +63,7 @@ def editarPerfil(request):
                 usuario.email = data["email"]
                 usuario.set_password(data['password1'])
                 usuario.save()
-                return render(request, "inicio.html", {'mensaje': 'Datos actualizados correctamente'})
+                return render(request, "editarDevolucion.html")
             else:
                 return render(request, "inicio.html", {"miFormulario": miFormulario})
     else:
@@ -85,18 +86,32 @@ def eliminarPerfil(request):
 
 #CONTACTO
 def crearContacto(request):
+    fecha = datetime.now().date()
+    contacto = Contacto(fecha = fecha)
+    fecha = time.gmtime()
+    time_stamp = calendar.timegm(fecha)
+    fecha = datetime.utcfromtimestamp(time_stamp).strftime('%Y-%m-%d')
     if request.method == "POST":
-            miFormulario = ContactoFormulario(request.POST)
-            if miFormulario.is_valid():
-                data = miFormulario.cleaned_data
-                contacto = Contacto(nombre=data["nombre"], correo=data["correo"], asunto=data["asunto"], mensaje=data["mensaje"])
-                contacto.save()
-                return render(request, "contacto_devolucion.html")
-            else:
-                return render(request, "inicio.html", {'mensaje': 'Formulario invalido'})
+        contacto = Contacto(nombre=request.POST["nombre"], correo=request.POST["correo"], asunto=request.POST["asunto"], mensaje=request.POST["mensaje"], fecha = fecha)
+        contacto.save()
+        return render(request, "contacto_devolucion.html")
     else:
-        miFormulario = ContactoFormulario()
-        return render(request, "contacto.html", {"miFormulario": miFormulario})
+        return render(request, "contacto.html", {"contacto": contacto})
+    
+def busquedaContacto(request):
+    return render(request, 'busquedaContacto.html')
+
+def buscar(request):
+    if request.GET['fecha']:
+        fecha = request.GET['fecha']
+        contactos = Contacto.objects.filter(fecha__icontains=fecha)
+        if contactos:
+            return render(request, "resultadoBusquedaContacto.html", {"contactos": contactos, "fecha":fecha})
+        else:
+            return render(request, "noHayMensajes.html", {"fecha":fecha})
+    else:
+        respuesta ="No enviaste datos"
+        return HttpResponse(respuesta)
     
 #AVATAR
 def crearAvatar(request):

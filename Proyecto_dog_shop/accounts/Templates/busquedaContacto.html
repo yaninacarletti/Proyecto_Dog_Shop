@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block contenido_que_cambia %}
+<div style="margin-left: 200px;">
+    <form action="{% url 'Buscar' %}" method="GET">
+
+        <p>Fecha</p><input type="date" name="fecha" id="fecha">
+        <input type="submit" value="Buscar">
+
+    </form>
+</div>
+{% endblock contenido_que_cambia %}

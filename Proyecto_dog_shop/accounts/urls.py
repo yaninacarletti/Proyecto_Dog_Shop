@@ -10,6 +10,8 @@ urlpatterns = [
     path('mostrarPerfil/', mostrarPerfil, name= 'MostrarPerfil'),
     path('eliminarPerfil/', eliminarPerfil, name= 'EliminarPerfil'),   
     path('crearContacto/', crearContacto, name= 'CrearContacto'),
+    path('busquedaContacto/', busquedaContacto, name= "busquedaContacto"),
+    path('buscar/', buscar, name= "Buscar"),
     path('crearAvatar/', crearAvatar, name= 'CrearAvatar'),
     ]
 

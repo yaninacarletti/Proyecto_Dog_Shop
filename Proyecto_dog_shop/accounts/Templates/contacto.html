@@ -3,28 +3,55 @@
 {% load static %}
 
 {% block contenido_que_cambia %}
-<div class="container-fluid pt-5">
-    <div class="container">
-        <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
-            <h6 class="text-primary text-uppercase">CONTÁCTENOS</h6>
-            <h1 class="display-5 text-uppercase mb-0">SIÉNTETE LIBRE DE CONTACTARNOS</h1>
-        </div>
-        <div class="row g-5">
-            <div class="col-lg-7">
-                <div style="margin-left: 200px;">
-                    <form action="{% url 'CrearContacto' %}" method = "POST">{% csrf_token %}
-                        <table> 
-                            {{miFormulario.as_table}}
-                        </table>
-                        <div style="padding-top: 200 px;">
-                            <input type="submit", value="Enviar Mensaje">
-                        </div>
-                        
-                    </form>
+        {% if user.is_staff %}
+        <div class="container-fluid pt-5">
+            <div class="container">
+                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                    <h6 class="text-primary text-uppercase">Mensajería</h6>
+                    <h1 class="display-5 text-uppercase mb-0">Búsqueda de mensajes</h1>
                 </div>
+                <button>
+                    <a href="{% url 'busquedaContacto' %}">Buscar mensajes</a>
+                </button>
+        {% else %}
+        <div class="container-fluid pt-5">
+            <div class="container">
+                <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                    <h6 class="text-primary text-uppercase">Contactanos</h6>
+                    <h1 class="display-5 text-uppercase mb-0">Siéntete libre de contactarnos</h1>
+                </div>
+                <div class="row g-5">
+                    <div class="col-lg-7">
+                        <form action="{% url 'CrearContacto' %}" method = "POST">{% csrf_token %}
+                            <div>
+                                <p>{{contacto.fecha}}</p>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <input type="text" class="form-control bg-light border-0 px-4" placeholder="Nombre" name="nombre" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <input type="email" class="form-control bg-light border-0 px-4" placeholder=" Email" name="correo" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <input type="text" class="form-control bg-light border-0 px-4" placeholder="Asunto" name="asunto" style="height: 55px;">
+                                </div>
+                                <div class="col-12">
+                                    <textarea class="form-control bg-light border-0 px-4 py-3" rows="8" placeholder="Mensaje" name="mensaje"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Enviar Mensaje</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                            {% include 'info_contacto.html' %}
+                        </div>
+                {% endif %}
             </div>
-                {% include 'info_contacto.html' %}
         </div>
-    </div> 
+    </div>
+</div>
+
 {% endblock contenido_que_cambia %}
 

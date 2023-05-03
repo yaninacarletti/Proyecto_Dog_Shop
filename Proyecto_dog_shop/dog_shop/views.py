@@ -38,17 +38,6 @@ def contacto(request):
 #         miFormulario = ProductoFormulario()
 #         return render(request, "productoFormulario.html", {"miFormulario": miFormulario})
 
-def busqueda_stock(request):
-    return render(request, 'busqueda_stock.html')
-
-def buscar(request):
-    if request.GET['stock']:
-        stock = request.GET['stock']
-        productos = Producto.objects.filter(stock__icontains=stock)
-        return render(request, "resultado_busqueda_stock.html", {"productos": productos, "stock":stock})
-    else:
-        respuesta ="No enviaste datos"
-        return HttpResponse(respuesta)
 
 # class ProductoList(ListView):
 #     model = Producto
@@ -88,7 +77,7 @@ def listaProductos(request):
 
 def detalleProductos(request, id):
     producto = Producto.objects.get(id = id)
-    return render(request, 'detalleProducto.html', {'producto':producto})
+    return render(request, "detalleProducto.html", {"producto": producto})
 
 @staff_member_required
 def crearProducto(request):
@@ -224,7 +213,7 @@ def eliminarMarca(request, id):
     if request.method == "POST":
         marca = Marca.objects.get(id=id)
         marca.delete()
-        return HttpResponseRedirect('/dog_shop/listaMarca/')
+        return HttpResponseRedirect('/dog_shop/listaMarcas/')
     return render(request, 'marcaDelete.html')
     
 @staff_member_required
@@ -300,9 +289,9 @@ def editarLeerMasServicios(request, id):
         return render(request, "editarFormularioLeerMasServicios.html", {"miFormulario": miFormulario, "id": leerMasServicios.id})
         
 def inicio(request):
-    servicios =listaServicios(request)
-    productos =listaProductos(request)
-    marcas =listaMarcas(request)
+    servicios = Servicio.objects.all()
+    productos = Producto.objects.all()
+    marcas = Marca.objects.all()
     return render(request, 'inicio.html', {'servicios':servicios, 'productos':productos, 'marcas':marcas})
 
 

@@ -7,7 +7,7 @@ class AvatarFormulario(forms.ModelForm):
     
     class Meta:
         model = Avatar
-        fields = ("user", "imagen")
+        fields = ("__all__")
 
 # class AvatarFormulario(forms.Form):
 
@@ -17,7 +17,7 @@ class AvatarFormulario(forms.ModelForm):
     def clean_user(self):
         user = self.cleaned_data['user']
         if user != self.user.username:
-            raise forms.ValidationError("Solo puede modificar su propio avatar")
+            raise forms.ValidationError("Sólo puede modificar su propio avatar")
         return user
         
 
@@ -26,6 +26,7 @@ class ContactoFormulario(forms.ModelForm):
     class Meta:
         model = Contacto
         fields = ('__all__')
+
 
 class UserEditForm(UserChangeForm):
 

@@ -17,6 +17,7 @@ class Contacto(models.Model):
     correo = models.EmailField()
     asunto = models.CharField(max_length=250)
     mensaje = models.CharField(max_length=1000)
+    fecha = models.DateTimeField()
 
     def __str__(self):
         return self.correo

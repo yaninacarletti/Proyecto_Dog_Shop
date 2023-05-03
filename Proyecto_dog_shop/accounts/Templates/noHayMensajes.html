@@ -4,8 +4,8 @@
 
 {% block contenido_que_cambia %}
 <div style="margin-left: 200px;">
-    <h1><strong>Usuario {{username}} creado exitosamente</strong></h1> 
-    <a href="{% url 'Inicio' %}">Inicio</a>
+    <h5><strong>No hay mensajes para la fecha {{fecha}}</strong></h5>
+    <a href="{% url 'busquedaContacto' %}">Volver</a>
 </div>
 
 {% endblock contenido_que_cambia %}

@@ -80,7 +80,7 @@
                 <a href="{% url 'ListaServicio' %}" class="nav-item nav-link">Servicios</a>
                 <a href="{% url 'ListaProducto' %}" class="nav-item nav-link">Productos</a> 
                 <a href="{% url 'ListaMarcas' %}" class="nav-item nav-link">Marcas</a>
-                <a href="{% url 'CrearContacto' %}" class="nav-item nav-link" style="padding-right: 40px;">Contacto</a>
+                <!-- <a href="{% url 'CrearContacto' %}" class="nav-item nav-link" style="padding-right: 40px;">Contacto</a> -->
                 {% comment %} <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
@@ -91,15 +91,9 @@
                         <a href="detail.html" class="dropdown-item">Blog Detail</a>
                     </div> {% endcomment %}
                 </div>
-                
-                <div class="nav-item dropdown" style="display: flex;column-gap: 10px;" >
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                <div class="dropdown-menu m-0" >
-                    <a href="{% url 'MostrarPerfil' %}" class="dropdown-item">Ver</a>
-                    <a href="{% url 'EditarPerfil' %}" class="dropdown-item">Editar</a>
-                    <a href="{% url 'EliminarPerfil' %}" class="dropdown-item">Eliminar</a>
+                <div style="padding-right: 100px">
+                    <a href="{% url 'CrearContacto' %}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contacto <i class="bi bi-arrow-right"></i></a>
                 </div>
-                {% comment %} <a href="{% url 'CrearContacto' %}" class="nav-item nav-link nav-contact bg-primary text-white px-5 ms-lg-5">Contacto <i class="bi bi-arrow-right"></i></a>  {% endcomment %}
                 <div style="display: flex; column-gap: 10px; padding-right: 10px; padding-left: 10px;" >
                 {% if user.is_authenticated %}
                     <div style = "margin-left: 200px;">
@@ -117,6 +111,13 @@
                 </div>
                 <div style="margin-right: 30px;">
                     <a class= "btn btn-primary" href="{% url 'Register' %}">Sign up</a>
+                </div>
+                <div class="nav-item dropdown" style="display: flex;column-gap: 10px; margin-right: 30px;" >
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                <div class="dropdown-menu m-0" >
+                    <a href="{% url 'MostrarPerfil' %}" class="dropdown-item">Ver</a>
+                    <a href="{% url 'EditarPerfil' %}" class="dropdown-item">Editar</a>
+                    <a href="{% url 'EliminarPerfil' %}" class="dropdown-item">Eliminar</a>
                 </div>
             </div>
         </div>
@@ -148,7 +149,7 @@
                 <div class="modal-body">
                     <!-- 16:9 aspect ratio -->
                     <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
+                        <iframe class="embed-responsive-item" src="https://www.loom.com/share/9c347e8eb64e429e96eb2fec0d530a67" id="video" allowfullscreen allowscriptaccess="always"
                             allow="autoplay"></iframe>
                     </div>
                 </div>
